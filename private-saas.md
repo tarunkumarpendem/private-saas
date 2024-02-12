@@ -16,6 +16,8 @@ Implementing a private Software as a Service (SaaS) solution using the Azure clo
 ![preview](./Images/Privatte-SaaS-1.png)
 [Creating Private Cloud in Azure](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-create-private-cloud?tabs=azure-portal#create-a-private-cloud)
 [Accessing the Private Cloud in Azure](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-access-private-cloud)
+[Configuring Networking for Private Cloud Azure](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-configure-networking)
+[Creating NSX-T Network segment](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-nsx-t-network-segment)
 
 * Define Requirements:
 ----------------------
@@ -60,14 +62,15 @@ Implement Azure Monitor and Azure Log Analytics for monitoring your application'
 * Deployment:
 -------------
 Deploy your application to Azure. This can be done through continuous integration and continuous deployment (CI/CD) pipelines using Azure DevOps, GitHub Actions, or other CI/CD tools.
+
 ![preview](./Images/Private-SaaS-2.png)
 
 * Scale and Load Balancing:
---------------------------
+---------------------------
 Configure auto-scaling for your application to handle varying workloads. Use Azure Load Balancer to distribute traffic across multiple instances.
 
 * Testing:
----------
+----------
 Conduct thorough testing, including functional testing, performance testing, and security testing, to ensure the reliability of your private SaaS.
 
 * Cost Management:
@@ -111,7 +114,7 @@ Setting up a private Software as a Service (SaaS) involves several steps to ensu
     Clearly outline the requirements for your private SaaS, including features, customization options, scalability, security measures, and integration capabilities.
 
 * Choose Software Stack:
---------------------------
+------------------------
     Select the appropriate technology stack for your SaaS application, considering factors such as programming languages, databases, and frameworks that align with your organization's preferences and expertise.
 
 * Design the Architecture:
@@ -158,10 +161,4 @@ Setting up a private Software as a Service (SaaS) involves several steps to ensu
 Note:
 -----
 * When we go with on-premises private SaaS we may not achieve everything which cloud offers like Autoscaling.
-
-
-
-
-
-
 
