@@ -1,7 +1,6 @@
 # Private-SaaS:
 ---------------
 
-* SaaS - Software as a Software
 * Private SaaS is a cloud-based software delivery model that provides all the benefits of traditional SaaS, with one key difference, the software runs on a private or dedicated cloud infrastructure rather than a shared public one.
 [What is Private SaaS](https://opsverse.io/2022/08/17/what-is-private-saas/)
 * Implementing private SaaS requires a cloud infrastructure that is dedicated to the business. This infrastructure can be hosted on-premises, or on a cloud platform 
@@ -12,12 +11,42 @@
 * The solution described can be used to enable private connectivity from a customer subscription/tenant to a service provider's solution.
 * The private connectivity pattern leverages standard Azure components to enable private connectivity between a consumer and a SaaS provider where public outbound connectivity from a consumer tenant and subscription is not permitted or supported.
 
-Implementing a private Software as a Service (SaaS) solution using the Azure cloud involves several steps. Below is a high-level guide to help you get started:
+Implementing a private Software as a Service (SaaS) solution using the Azure cloud involves several steps.
+
+### Setting up private cloud environment in Azure:
+--------------------------------------------------
+
 ![preview](./Images/Privatte-SaaS-1.png)
-[Creating Private Cloud in Azure](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-create-private-cloud?tabs=azure-portal#create-a-private-cloud)
-[Accessing the Private Cloud in Azure](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-access-private-cloud)
-[Configuring Networking for Private Cloud Azure](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-configure-networking)
-[Creating NSX-T Network segment](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-nsx-t-network-segment)
+
+* For creating the private cloud in Azure 1st we need to set up Azure VMware Solution in a separate Azure subscription this will cost around $20k per month and varies based on the paln we select  
+[Creating Azure VMware Solution](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-create-private-cloud?tabs=azure-portal)
+
+![preview](./Images/Private-SaaS-3.png)
+
+* Then we need to access the private cloud (VMware Solution) for that we need to configure the VMware solution.
+[Access an Azure VMware Solution private cloud](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-access-private-cloud)
+
+* Azure VMware Solution doesn't allow us to manage your private cloud with your on-premises vCenter Server. Instead, we need to connect to the Azure VMware Solution vCenter Server instance through a jump box.
+* Then we need to connect the vCenter Server of your private cloud
+![preview](./Images/Private-SaaS-4.png)
+
+* Then we need to Configure networking for our VMware private cloud in Azure
+[Configure networking for VMware private cloud in Azure](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-configure-networking)
+* Then we need to connect to the private cloud manually and do the necessary configurations.
+
+* Then we need to Add an NSX-T Data Center network segment in Azure VMware Solution.
+
+* After deploying Azure VMware Solution, you can configure an NSX-T Data Center network segment from NSX-T Manager or the Azure portal. Once configured, the segments are visible in Azure VMware Solution, NSX-T Manager, and vCenter Server. NSX-T Data Center comes pre-provisioned by default with an NSX-T Data Center Tier-0 gateway in Active/Active mode and a default NSX-T Data Center Tier-1 gateway in Active/Standby mode. These gateways let you connect the segments (logical switches) and provide East-West and North-South connectivity.
+[Add an NSX-T Data Center network segment in Azure VMware Solution](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-nsx-t-network-segment)
+
+Note:
+-----
+
+* Now, we are trying to set up the priavte environment by creating a new subscription in Azure and provisioning the infra under a new vNet under the newly created subscription.
+
+
+### Steps to be considered:
+---------------------------
 
 * Define Requirements:
 ----------------------
@@ -80,89 +109,3 @@ Monitor and manage costs effectively by leveraging Azure Cost Management tools. 
 * Backup and Disaster Recovery:
 --------------------------------
 Implement backup and disaster recovery plans using Azure Backup and Azure Site Recovery to protect your data and ensure business continuity.
-
-
-
-* For creating the private cloud in Azure 1st we need to set up Azure VMware Solution in a separate Azure subscription this will cost around $20k per month and varies based on the paln we select  
-[Creating Azure VMware Solution](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-create-private-cloud?tabs=azure-portal)
-
-![preview](./Images/Private-SaaS-3.png)
-
-
-* Then we need to access the private cloud (VMware Solution) for that we need to configure the VMware solution.
-[Access an Azure VMware Solution private cloud](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-access-private-cloud)
-
-* Azure VMware Solution doesn't allow us to manage your private cloud with your on-premises vCenter Server. Instead, we need to connect to the Azure VMware Solution vCenter Server instance through a jump box.
-* Then we need to connect the vCenter Server of your private cloud
-![preview](./Images/Private-SaaS-4.png)
-
-* Then we need to Configure networking for our VMware private cloud in Azure
-[Configure networking for VMware private cloud in Azure](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-configure-networking)
-* Then we need to connect to the private cloud manually and do the necessary configurations.
-
-* Then we need to Add an NSX-T Data Center network segment in Azure VMware Solution.
-
-* After deploying Azure VMware Solution, you can configure an NSX-T Data Center network segment from NSX-T Manager or the Azure portal. Once configured, the segments are visible in Azure VMware Solution, NSX-T Manager, and vCenter Server. NSX-T Data Center comes pre-provisioned by default with an NSX-T Data Center Tier-0 gateway in Active/Active mode and a default NSX-T Data Center Tier-1 gateway in Active/Standby mode. These gateways let you connect the segments (logical switches) and provide East-West and North-South connectivity.
-[Add an NSX-T Data Center network segment in Azure VMware Solution](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-nsx-t-network-segment)
-
-
-* Now, we are trying to set up the priavte environment by creating a new subscription in Azure and provisioning the infra under a new vNet under the newly created subscription.
-
-
-
-
-Setting up a private Software as a Service (SaaS) involves several steps to ensure that the software is hosted and accessible exclusively for your organization's internal use. Below is a general guide to help you set up a private SaaS:
-
-* Define Requirements:
-----------------------
-    Clearly outline the requirements for your private SaaS, including features, customization options, scalability, security measures, and integration capabilities.
-
-* Choose Software Stack:
-------------------------
-    Select the appropriate technology stack for your SaaS application, considering factors such as programming languages, databases, and frameworks that align with your organization's preferences and expertise.
-
-* Design the Architecture:
---------------------------
-    Plan the architecture of your SaaS solution, including the infrastructure setup, network configuration, and server deployment strategy. Decide whether you'll host the solution on-premises or in a private cloud.
-
-* Develop the Application:
---------------------------
-    Begin the development process based on your defined requirements and chosen technology stack. Ensure that the application is designed to be scalable, maintainable, and secure.
-
-* Implement Security Measures:
-------------------------------
-    Implement robust security measures to protect your private SaaS. This includes encryption, access controls, authentication, and regular security audits. Consider compliance with industry regulations if applicable.
-
-* Set Up Hosting Environment:
------------------------------
-    Depending on your hosting choice, set up the necessary infrastructure. This may involve configuring on-premises servers or provisioning resources in a private cloud environment (e.g., AWS, Azure, or Google Cloud).
-
-* Database Configuration:
--------------------------
-    Configure and optimize the database for your SaaS application. Ensure data integrity, implement regular backups, and consider disaster recovery plans.
-
-* Integration with Existing Systems:
-------------------------------------
-    If your organization uses other software systems, ensure that your private SaaS can integrate seamlessly with them. This might involve API development or using middleware solutions.
-
-* User Authentication and Access Control:
------------------------------------------
-    Implement user authentication mechanisms and access control features to manage user permissions effectively. This is crucial for ensuring that only authorized personnel can access the SaaS application.
-
-* Monitoring and Logging:
--------------------------
-    Set up monitoring tools and logging mechanisms to track the performance, usage, and potential issues within your private SaaS. This helps in identifying and addressing issues proactively.
-
-* Testing:
-----------
-    Conduct thorough testing, including unit testing, integration testing, and user acceptance testing, to ensure that the private SaaS meets your organization's requirements and is free of critical issues.
-
-* Deployment:
--------------
-    Deploy the private SaaS application to your hosting environment. Monitor the deployment process to catch any issues that may arise during or after deployment.
-
-
-Note:
------
-* When we go with on-premises private SaaS we may not achieve everything which cloud offers like Autoscaling.
-
