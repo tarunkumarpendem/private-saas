@@ -11,12 +11,12 @@
 * The solution described can be used to enable private connectivity from a customer subscription/tenant to a service provider's solution.
 * The private connectivity pattern leverages standard Azure components to enable private connectivity between a consumer and a SaaS provider where public outbound connectivity from a consumer tenant and subscription is not permitted or supported.
 
+![preview](./Images/Privatte-SaaS-1.png)
+
 Implementing a private Software as a Service (SaaS) solution using the Azure cloud involves several steps.
 
 ### Setting up private cloud environment in Azure:
 --------------------------------------------------
-
-![preview](./Images/Privatte-SaaS-1.png)
 
 * For creating the private cloud in Azure 1st we need to set up Azure VMware Solution in a separate Azure subscription this will cost around $20k per month and varies based on the paln we select  
 [Creating Azure VMware Solution](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-create-private-cloud?tabs=azure-portal)
