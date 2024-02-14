@@ -83,26 +83,30 @@ Implement backup and disaster recovery plans using Azure Backup and Azure Site R
 
 
 
-* Azure LightHouse and Azure Spark can be good choices for this implementation:
+* For creating the private cloud in Azure 1st we need to set up Azure VMware Solution in a separate Azure subscription this will cost around $20k per month and varies based on the paln we select  
+[Creating Azure VMware Solution](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-create-private-cloud?tabs=azure-portal)
 
-### Azure LightHouse:
----------------------
-    * With Azure Lighthouse, a service provider can perform a wide range of management tasks directly on a customer's subscription (or resource group). This access is achieved through a logical projection, allowing service providers to sign in to their own tenant and access resources that belong to the customer's tenant.
-    * Azure Lighthouse is for both managed service providers (MSPs) and customers. MSPs can use Azure Lighthouse to help build and scale a secure managed services practice, while customers benefit from best practice security features.
-[Azure LightHouse](https://learn.microsoft.com/en-us/azure/lighthouse/overview)
-[Azure LightHouse](https://azure.microsoft.com/en-in/products/azure-lighthouse)
+![preview](./Images/Private-SaaS-3.png)
 
-### Azure Arc:
---------------
-    * Azure Arc is a bridge that extends the Azure platform to help you build applications and services with the flexibility to run across datacenters, at the edge, and in multicloud environments. Develop cloud-native applications with a consistent development, operations, and security model.
-    * Azure Arc provides a centralized, unified way to Manage your entire environment together by projecting your existing non-Azure and/or on-premises resources into Azure Resource Manager. Manage virtual machines, Kubernetes clusters, and databases as if they are running in Azure.
-[Azure Arc](https://learn.microsoft.com/en-us/azure/azure-arc/overview)
-[Azure Arc](https://azure.microsoft.com/en-in/products/azure-arc)
 
-The specifics of setting up a private SaaS can vary depending on the technology stack, hosting environment, and the unique requirements of your organization.
+* Then we need to access the private cloud (VMware Solution) for that we need to configure the VMware solution.
+[Access an Azure VMware Solution private cloud](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-access-private-cloud)
 
-What is the difference between Azure lighthouse and Azure arc?
-Azure Arc enables deployment of Azure services anywhere and extends Azure management to any infrastructure, while Azure Lighthouse offers the efficiencies of multi-customer management at scale.
+* Azure VMware Solution doesn't allow us to manage your private cloud with your on-premises vCenter Server. Instead, we need to connect to the Azure VMware Solution vCenter Server instance through a jump box.
+* Then we need to connect the vCenter Server of your private cloud
+![preview](./Images/Private-SaaS-4.png)
+
+* Then we need to Configure networking for our VMware private cloud in Azure
+[Configure networking for VMware private cloud in Azure](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-configure-networking)
+* Then we need to connect to the private cloud manually and do the necessary configurations.
+
+* Then we need to Add an NSX-T Data Center network segment in Azure VMware Solution.
+
+* After deploying Azure VMware Solution, you can configure an NSX-T Data Center network segment from NSX-T Manager or the Azure portal. Once configured, the segments are visible in Azure VMware Solution, NSX-T Manager, and vCenter Server. NSX-T Data Center comes pre-provisioned by default with an NSX-T Data Center Tier-0 gateway in Active/Active mode and a default NSX-T Data Center Tier-1 gateway in Active/Standby mode. These gateways let you connect the segments (logical switches) and provide East-West and North-South connectivity.
+[Add an NSX-T Data Center network segment in Azure VMware Solution](https://learn.microsoft.com/en-us/azure/azure-vmware/tutorial-nsx-t-network-segment)
+
+
+* Now, we are trying to set up the priavte environment by creating a new subscription in Azure and provisioning the infra under a new vNet under the newly created subscription.
 
 
 
